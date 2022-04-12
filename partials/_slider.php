@@ -8,7 +8,7 @@ echo '<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs
 </div>
 <div class="carousel-inner">
     <!-- Slider 1 -->
-    <div class="carousel-item active" data-bs-interval="10000" style="height: 500px;">
+    <div class="carousel-item active" data-bs-interval="10000">
         <img style="object-fit:cover;" src="img/slider1.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
             <!-- <h5>First slide label</h5>
@@ -17,7 +17,7 @@ echo '<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs
     </div>
 
     <!-- Slider 2 -->
-    <div class="carousel-item" data-bs-interval="2000" style="height: 500px;">
+    <div class="carousel-item" data-bs-interval="2000">
         <img style="object-fit:cover;" src="img/slider2.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
             <!-- <h5>Second slide label</h5>
@@ -26,7 +26,7 @@ echo '<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs
     </div>
 
     <!-- Slider 3 -->
-    <div class="carousel-item" style="height: 500px;">
+    <div class="carousel-item">
         <img style="object-fit:cover;" src="img/slider3.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
             <!-- <h5>Third slide label</h5>

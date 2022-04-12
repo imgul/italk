@@ -17,8 +17,9 @@ include 'partials/_config.php';
 </head>
 
 <body>
-    <?php include 'partials/_navbar.php'; ?>
-    <?php include 'partials/_slider.php'; ?>
+    <?php include 'partials/_navbar.php';
+    include 'partials/_slider.php';
+    ?>
 
 
     <div class="container my-5">
@@ -28,7 +29,7 @@ include 'partials/_config.php';
             $sqlFeatured = "SELECT * FROM `categories` WHERE `category_featured` = true LIMIT 3;";
             $resultFeatured = mysqli_query($conn, $sqlFeatured);
             while ($row = mysqli_fetch_assoc($resultFeatured)) {
-                echo '<div class="col-md-4">
+                echo '<div class="col-md-4 py-2">
                     <div class="card text-center">
                         <div class="card-header">
                             Featured
@@ -56,18 +57,18 @@ include 'partials/_config.php';
             $sql = "SELECT * FROM `categories`";
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="col-md-3 py-3">
-                <div class="card" style="width: 100%;">
-                    <div style="width: 100%; height: 180px; background-color:bisque;">
-                        <img src="img/' . $row["category_title"] . '.png" style="height:100%; object-fit: cover;" class="card-img-top" alt="...">
+                echo '<div class="col-lg-3 col-md-4 col-sm-6 py-3">
+                    <div class="card" style="width: 100%;">
+                        <div style="width: 100%; height: 180px; background-color:bisque;">
+                            <img src="img/' . $row["category_title"] . '.png" style="height:100%; object-fit: cover;" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">' . $row["category_title"] . '</h5>
+                            <p class="card-text">' . substr($row["category_desc"], 0, 95) . '...</p>
+                            <a href="threadlist.php?catid=' . $row["category_id"] . '" class="btn btn-primary">View Community</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">' . $row["category_title"] . '</h5>
-                        <p class="card-text">' . substr($row["category_desc"], 0, 95) . '...</p>
-                        <a href="threadlist.php?catid=' . $row["category_id"] . '" class="btn btn-primary">View Community</a>
-                    </div>
-                </div>
-            </div>';
+                </div>';
             }
             ?>
         </div>

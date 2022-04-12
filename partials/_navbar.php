@@ -10,7 +10,7 @@ session_start();
 // Show how much categories in dropdown
 $showFeaturedCategoryDropdown = 10;
 
-echo '<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+echo '<nav class="navbar navbar-expand-md navbar-dark bg-primary">
 <div class="container-fluid">
     <a class="navbar-brand" href="index.php">iTalk</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -28,27 +28,27 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Featured Communities
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">';
+                <ul class="dropdown-menu bg-primary border-light" aria-labelledby="navbarDropdown">';
 if (isset($showFeaturedCategoryDropdown)) {
     $sqlShowFeaturedCategoryDropdown = "SELECT * FROM `categories` WHERE `category_featured` = true LIMIT $showFeaturedCategoryDropdown;";
     $resultShowFeaturedCategoryDropdown = mysqli_query($conn, $sqlShowFeaturedCategoryDropdown);
     while ($row = mysqli_fetch_assoc($resultShowFeaturedCategoryDropdown)) {
         // echo $row['category_title'];
-        echo '<li><a class="dropdown-item" href="threadlist.php?catid=' . $row['category_id'] . '">' . $row['category_title'] . '</a></li>';
+        echo '<li><a class="dropdown-item text-white" style="hover:text-primary" href="threadlist.php?catid=' . $row['category_id'] . '">' . $row['category_title'] . '</a></li>';
     }
 }
 echo '</ul>
             </li>
         </ul>
-        <form class="d-flex mx-2" action="search.php" method="GET">
+        <form class="d-flex me-md-4" action="search.php" method="GET">
             <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light" type="submit">Search</button>
         </form>';
 if ((isset($_SESSION['loggedin'])) && $_SESSION['loggedin'] == true) {
-    echo '<a href="logout.php" class="btn btn-outline-secondary mx-2">Logout</a>';
+    echo '<a href="logout.php" class="btn btn-outline-secondary mt-md-0 mt-2 me-2">Logout</a>';
 } else {
-    echo '<a href="login.php" class="btn btn-outline-secondary mx-2">Login</a>
-            <a href="register.php" class="btn btn-secondary mx-2">Register</a>';
+    echo '<a href="login.php" class="btn btn-outline-secondary mt-md-0 mt-2 me-2">Login</a>
+            <a href="register.php" class="btn btn-secondary mt-md-0 mt-2">Register</a>';
 }
 echo '</div>
 </div>

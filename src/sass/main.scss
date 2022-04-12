@@ -1,3 +1,11 @@
-@use 'custom';
+@use 'custom' as *;
 
-@use 'components/cards';
+// Import Bootstrap 5
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+@import 'components/buttons';
+
+
+@import 'sections/navbar';
+@import 'sections/slider';
+@import 'sections/cards';
