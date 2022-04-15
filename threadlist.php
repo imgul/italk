@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="row mx-0">
         <!-- Sidebar -->
-        <div class="col-md-3 p-0">
+        <!-- <div class="col-md-3 p-0">
             <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
                 <a href="<?php $_SERVER['PHP_URI']; ?>"" class=" d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <svg class="bi me-2" width="40" height="32">
@@ -152,29 +152,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
         <!-- Inner Right Content -->
-        <div class="col-md-9">
+        <div class="col-12">
             <!-- Community Guidelines and Rules -->
-            <div class="container py-4">
-                <div class="h-100 p-5 text-white bg-dark rounded-3">
-                    <h2>Community Guidelines and Rules</h2>
-                    <p>
-                        No Spam / Advertising / Self-promote in the forums.
-                        Do not post copyright-infringing material.
-                        Do not post “offensive” posts, links or images.
-                        Do not cross post questions.
-                        Do not PM users asking for help.
-                        Remain respectful of other members at all times.
-                    </p>
-                    <a href="rules.php" class="btn btn-outline-light" type="button">More about rules</a>
+            <div class="container py-4 px-1">
+                <div class="accordion" id="accordionRules">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Community Guidelines and Rules
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionRules">
+                            <div class="accordion-body">
+                                <p>
+                                    No Spam / Advertising / Self-promote in the forums.
+                                    Do not post copyright-infringing material.
+                                    Do not post “offensive” posts, links or images.
+                                    Do not cross post questions.
+                                    Do not PM users asking for help.
+                                    Remain respectful of other members at all times.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Ask Question Form -->
-            <div class="container py-4">
+            <div class="container py-4 px-1">
                 <h2>Ask a Questions</h2>
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . '?catid=' . $_GET['catid']); ?>" method="POST">
                     <div class="mb-3">
@@ -194,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <hr>
 
             <!-- Browse All Questions -->
-            <div class="container py-4">
+            <div class="container py-4 px-0">
                 <h2>Browse All Questions</h2>
                 <div class="list-group pt-2">
                     <!-- Loop for Category Questions -->
@@ -214,12 +223,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 $rowFetchUsername = mysqli_fetch_assoc($resultFetchUsername);
 
                                 // Displaying Thread Data
-                                echo '<a href="thread.php?threadid=' . $row['thread_id'] . '" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                                    <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                                    <div class="d-flex gap-2 w-100 justify-content-between">
+                                echo '<a href="thread.php?threadid=' . $row['thread_id'] . '" class="list-group-item list-group-item-action d-flex flex-column flex-md-row gap-3 py-3" aria-current="true">
+                                    <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="d-none d-md-block rounded-circle flex-shrink-0">
+                                    <div class="d-flex flex-column flex-md-row gap-2 w-100 justify-content-between">
                                         <div>
                                             <h6 class="mb-0">' . $row['thread_title'] . '</h6>
-                                            <p class="mb-0 opacity-75">' . $row['thread_desc'] . '</p>
+                                            <p class="mb-0 opacity-75">' . substr($row['thread_desc'], 0, 90) . '...</p>
                                         </div>
                                         <small class="opacity-50 text-nowrap"><b class="text-capitalize">' . $rowFetchUsername['user_username'] . '</b> at ' . $row['thread_date'] . '</small>
                                     </div>

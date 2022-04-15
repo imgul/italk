@@ -47,8 +47,11 @@
             </ul>
         </div>
         <div class="col-md-4 col-sm-8 pt-4">
-            <p class="fw-bold" style="color: #E8EDF5;">Subscribe For Newsletter</p>
-            <p style="font-size: 14px;">Subscribe for Newsletter Lorem ipsum dolor sit amet.</p>
+            <p class="fw-bold" style="color: #E8EDF5;">Contact Us</p>
+            <ul class="nav flex-column" style="font-size: 14px;">
+                <li class="nav-item"><a class="nav-link" style="color: #C9C5F5;" href="#">+92 (302) 6999 008</a></li>
+                <li class="nav-item"><a class="nav-link" style="color: #C9C5F5;" href="#">contact@italk.com</a></li>
+            </ul>
         </div>
     </div>
 </div>
