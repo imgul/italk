@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="row mx-0">
         <!-- Sidebar -->
-        <div class="col-md-3 p-0">
+        <!-- <div class="col-md-3 p-0">
             <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
                 <a href="<?php $_SERVER['PHP_URI']; ?>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <svg class="bi me-2" width="40" height="32">
@@ -152,14 +152,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Inner Right Content -->
-        <div class="col-md-9">
+        <div class="col-12">
 
             <!-- Thread Info Jumbotron -->
-            <div class="p-2 mb-4 bg-light rounded-3">
-                <div class="container-fluid py-5">
+            <div class="p-1 mb-4 bg-light rounded-3">
+                <div class="container py-5 px-1">
                     <?php
                     $thread_id = $_GET['threadid'];
                     $sql = "SELECT * FROM `threads` WHERE `thread_id` = '$thread_id';";
@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <!-- Post an Comment Form -->
-            <div class="container py-4">
+            <div class="container py-4 px-1">
                 <h2>Post a Comment</h2>
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_URI']); ?>" method="POST">
                     <div class="mb-3">
@@ -202,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <hr>
 
             <!-- Thread All Comments -->
-            <div class="container py-4">
+            <div class="container py-4 px-1">
                 <h2>All Comments</h2>
                 <div class="list-group pt-2">
                     <!-- Loop for All Comments -->
@@ -220,15 +220,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 $rowFetchUsername = mysqli_fetch_assoc($resultFetchUsername);
 
                                 // Displaying Comments Data
-                                echo '<a href="thread.php?threadid=' . $thread_id . '" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                                <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                                <div class="d-flex gap-2 w-100 justify-content-between">
-                                <div>
-                                <h6 class="mb-0 text-capitalize">' . $rowFetchUsername["user_username"] . '</h6>
-                                <p class="mb-0 opacity-75">' . $row["comment_desc"] . '</p>
+                                echo '<a href="thread.php?threadid=' . $thread_id . '" class="list-group-item list-group-item-action d-flex flex-column gap-3 py-3" aria-current="true">
+                                <div class="d-flex gap-2 w-100 justify-content-start align-items-center">
+                                    <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle">
+                                    <h6 class="mb-0 text-capitalize w-100">' . $rowFetchUsername["user_username"] . '</h6>
+                                    <small class="flex-shrink-0 opacity-50 text-nowrap">' . $row["comment_date"] . '</small>
                                 </div>
-                                <small class="opacity-50 text-nowrap">' . $row["comment_date"] . '</small>
-                                </div>
+                                    <div class="d-flex flex-column flex-md-row gap-2 w-100 justify-content-between">
+                                        <div>
+                                            <p class="mb-0 opacity-75">' . $row["comment_desc"] . '</p>
+                                        </div>
+                                        
+                                    </div>
                                 </a>';
                             }
                         } else {
