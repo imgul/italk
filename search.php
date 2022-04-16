@@ -25,14 +25,14 @@ include 'partials/_config.php';
     <div class="container">
         <!-- Thread Info Jumbotron -->
         <div class="p-2 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
+            <div class="container py-3">
                 <?php
                 $query = $_GET['query'];
                 $sql = "SELECT * FROM `threads` WHERE MATCH (thread_title, thread_desc) against ('$query');";
                 $result = mysqli_query($conn, $sql);
                 $foundResults = mysqli_num_rows($result);
 
-                echo '<h1 class="fw-bold">Search Results For <em>"' . $_GET["query"] . '"</em></h1>
+                echo '<h3 class="fw-bold">Search Results For "' . $_GET["query"] . '"</h3>
                         <p class="col-md-8 fs-5"><b>' . $foundResults . '</b> Results Found.</p>';
                 ?>
 
@@ -58,7 +58,7 @@ include 'partials/_config.php';
                         echo '<a href="thread.php?threadid=' . $thread_id . '" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                             <div class="d-flex gap-2 w-100 justify-content-between">
                                 <div>
-                                    <h6 class="mb-0">' . $row["thread_title"] . '</h6>
+                                    <h6 class="mb-0 text-primary">' . $row["thread_title"] . '</h6>
                                     <p class="mb-0 opacity-75">' . $row["thread_desc"] . '</p>
                                 </div>
                             </div>

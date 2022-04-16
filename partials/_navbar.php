@@ -1,14 +1,11 @@
 <?php
-// $nowTime = time();
-// if ($nowTime > $_SESSION['expire']) {
-//     session_unset();
-//     session_destroy();
-// } else {
 session_start();
-// }
+$nowTime = time();
+if ($nowTime > $_SESSION['expire']) {
+    session_unset();
+    session_destroy();
+}
 
-// Show how much categories in dropdown
-$showFeaturedCategoryDropdown = 10;
 
 echo '<nav class="navbar navbar-expand-md navbar-dark bg-primary">
 <div class="container-fluid">
@@ -26,16 +23,14 @@ echo '<nav class="navbar navbar-expand-md navbar-dark bg-primary">
             <li class="nav-item dropdown">
                 <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    Featured Communities
+                    Browse Communities
                 </a>
                 <ul class="dropdown-menu bg-primary border-light" aria-labelledby="navbarDropdown">';
-if (isset($showFeaturedCategoryDropdown)) {
-    $sqlShowFeaturedCategoryDropdown = "SELECT * FROM `categories` WHERE `category_featured` = true LIMIT $showFeaturedCategoryDropdown;";
-    $resultShowFeaturedCategoryDropdown = mysqli_query($conn, $sqlShowFeaturedCategoryDropdown);
-    while ($row = mysqli_fetch_assoc($resultShowFeaturedCategoryDropdown)) {
-        // echo $row['category_title'];
-        echo '<li><a class="dropdown-item text-white" style="hover:text-primary" href="threadlist.php?catid=' . $row['category_id'] . '">' . $row['category_title'] . '</a></li>';
-    }
+$sqlShowCategoryDropdown = "SELECT * FROM `categories`;";
+$resultShowCategoryDropdown = mysqli_query($conn, $sqlShowCategoryDropdown);
+while ($row = mysqli_fetch_assoc($resultShowCategoryDropdown)) {
+    // echo $row['category_title'];
+    echo '<li><a class="dropdown-item" style="hover:text-primary" href="threadlist.php?catid=' . $row['category_id'] . '">' . $row['category_title'] . '</a></li>';
 }
 echo '</ul>
             </li>
@@ -45,9 +40,9 @@ echo '</ul>
             <button class="btn btn-outline-light" type="submit">Search</button>
         </form>';
 if ((isset($_SESSION['loggedin'])) && $_SESSION['loggedin'] == true) {
-    echo '<a href="logout.php" class="btn btn-outline-secondary mt-md-0 mt-2 me-2">Logout</a>';
+    echo '<a href="logout.php" class="btn btn-outline-danger mt-md-0 mt-2 me-2">Logout</a>';
 } else {
-    echo '<a href="login.php" class="btn btn-outline-secondary mt-md-0 mt-2 me-2">Login</a>
+    echo '<a href="login.php" class="btn btn-outline-light mt-md-0 mt-2 me-2">Login</a>
             <a href="register.php" class="btn btn-secondary mt-md-0 mt-2">Register</a>';
 }
 echo '</div>

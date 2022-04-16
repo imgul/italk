@@ -21,12 +21,18 @@ include 'partials/_config.php';
     include 'partials/_slider.php';
     ?>
 
-
+    <!-- Featured Categories -->
     <div class="container my-5">
         <h1 class="text-center">Featured Categories</h1>
         <div class="row my-4">
             <?php
-            $sqlFeatured = "SELECT * FROM `categories` WHERE `category_featured` = true LIMIT 3;";
+            // $sqlFeatured = "SELECT * FROM `categories` WHERE `category_featured` = true LIMIT 3;";
+            $sqlFeatured = "SELECT c.category_id, c.category_title, c.category_desc, COUNT(t.thread_id)
+                            FROM threads t INNER JOIN categories c
+                            ON t.thread_category_id = c.category_id
+                            GROUP BY category_id
+                            ORDER BY COUNT(t.thread_id) DESC
+                            LIMIT 3;";
             $resultFeatured = mysqli_query($conn, $sqlFeatured);
             while ($row = mysqli_fetch_assoc($resultFeatured)) {
                 echo '<div class="col-md-4 py-2">
@@ -39,9 +45,7 @@ include 'partials/_config.php';
                             <p class="card-text">' . substr($row['category_desc'], 0, 132) . '...</p>
                             <a href="threadlist.php?catid=' . $row["category_id"] . '" class="btn btn-primary">View All Community</a>
                         </div>
-                        <div class="card-footer text-muted">
-                            2 days ago
-                        </div>
+                        <div class="card-footer text-muted">' . $row["COUNT(t.thread_id)"] . ' Questions</div>
                     </div>
                 </div>';
             }
@@ -50,6 +54,7 @@ include 'partials/_config.php';
         </div>
     </div>
 
+    <!-- Explore All Categories -->
     <div class="container my-5">
         <h1 class="text-center">Explore All Categories</h1>
         <div class="row my-4">
@@ -60,10 +65,14 @@ include 'partials/_config.php';
                 echo '<div class="col-lg-3 col-md-4 col-sm-6 py-3">
                     <div class="card" style="width: 100%;">
                         <div style="width: 100%; height: 180px; background-color:bisque;">
-                            <img src="img/' . $row["category_title"] . '.png" style="height:100%; object-fit: cover;" class="card-img-top" alt="...">
+                            <a href="threadlist.php?catid=' . $row["category_id"] . '">
+                                <img src="img/' . $row["category_title"] . '.png" style="height:100%; object-fit: cover;" class="card-img-top" alt="...">
+                            </a>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">' . $row["category_title"] . '</h5>
+                            <a href="threadlist.php?catid=' . $row["category_id"] . '">
+                                <h5 class="card-title">' . $row["category_title"] . '</h5>
+                            </a>
                             <p class="card-text">' . substr($row["category_desc"], 0, 95) . '...</p>
                             <a href="threadlist.php?catid=' . $row["category_id"] . '" class="btn btn-primary">View Community</a>
                         </div>

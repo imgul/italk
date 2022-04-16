@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['username'] = $username;
             $_SESSION['loggedin'] = true;
             $_SESSION['start'] = time();
-            $_SESSION['expire'] = $_SESSION['start'] + (1 * 60);
+            $_SESSION['expire'] = $_SESSION['start'] + (60 * 60 * 24);
             header('location: index.php');
         } else {
             $errorAlert = "Password is wrong.";

@@ -227,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="d-none d-md-block rounded-circle flex-shrink-0">
                                     <div class="d-flex flex-column flex-md-row gap-2 w-100 justify-content-between">
                                         <div>
-                                            <h6 class="mb-0">' . $row['thread_title'] . '</h6>
+                                            <h6 class="mb-0 text-primary">' . $row['thread_title'] . '</h6>
                                             <p class="mb-0 opacity-75">' . substr($row['thread_desc'], 0, 90) . '...</p>
                                         </div>
                                         <small class="opacity-50 text-nowrap"><b class="text-capitalize">' . $rowFetchUsername['user_username'] . '</b> at ' . $row['thread_date'] . '</small>
@@ -239,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             echo '<div class="p-2 mb-4 bg-light rounded-3">
                                 <div class="container py-5">
                                 <h2 class="fw-bold">No Questions Found.</h2>
-                                    <p class="col-md-8 fs-5">Be the first to ask Question.</p>
+                                    <p class="col-md-8 fs-5">Be the first to ask a Question.</p>
                                 </div>
                             </div>';
                         }

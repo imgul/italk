@@ -173,10 +173,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $rowFetchUsername = mysqli_fetch_assoc($resultFetchUsername);
 
                     // Displaying Question Data
-                    echo '<h1 class="fw-bold">' . $row["thread_title"] . '</h1>
-                        <p class="col-md-8 fs-5">' . $row["thread_desc"] . '</p>
+                    echo '<h3 class="fw-bold">' . $row["thread_title"] . '</h3>
+                        <p class="col-md-8 fs-6">' . $row["thread_desc"] . '</p>
                         <!-- <button class="btn btn-primary btn-lg" type="button">Example button</button> -->
-                        <p>Posted By: <b><em class="text-capitalize">' . $rowFetchUsername["user_username"] . '</em></b> at <b>' . $row["thread_date"] . '</b></p>';
+                        <!-- <p>Asked By:</p> -->
+                        <div class="d-flex gap-2 justify-content-start align-items-center">
+                            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle">
+                            <h6 class="mb-0 text-capitalize">' . $rowFetchUsername["user_username"] . '</h6>
+                            <small class="opacity-50 text-nowrap">' . $row["thread_date"] . '</small>
+                        </div>';
 
                     ?>
 
@@ -203,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- Thread All Comments -->
             <div class="container py-4 px-1">
-                <h2>All Comments</h2>
+                <h2>Browse Comments</h2>
                 <div class="list-group pt-2">
                     <!-- Loop for All Comments -->
                     <?php
@@ -226,12 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <h6 class="mb-0 text-capitalize w-100">' . $rowFetchUsername["user_username"] . '</h6>
                                     <small class="flex-shrink-0 opacity-50 text-nowrap">' . $row["comment_date"] . '</small>
                                 </div>
-                                    <div class="d-flex flex-column flex-md-row gap-2 w-100 justify-content-between">
-                                        <div>
-                                            <p class="mb-0 opacity-75">' . $row["comment_desc"] . '</p>
-                                        </div>
-                                        
-                                    </div>
+                                <p class="mb-0 opacity-75">' . $row["comment_desc"] . '</p>
                                 </a>';
                             }
                         } else {

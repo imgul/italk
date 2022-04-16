@@ -1,5 +1,9 @@
-.dropdown-item{
-    &:hover{
-        color: white;
-    }
+@use "../custom" as *;
+
+a.dropdown-item:hover {
+    color: $primary;
+}
+
+a.dropdown-item {
+    color: white;
 }
